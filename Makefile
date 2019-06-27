@@ -10,9 +10,7 @@ LDFLAGS= -lm
 # CFLAGS+=-fprofile-arcs -ftest-coverage
 # LDFLAGS+=-lgcov
 
-all: rax-test rax-oom-test
-
-
+all: rax-test rax-oom-test rax-samples
 
 rax-test: rax-test.o rax.o rc4rand.o crc16.o
 	$(CC) -o $@ $^ $(LDFLAGS) $(DEBUG)
@@ -20,9 +18,11 @@ rax-test: rax-test.o rax.o rc4rand.o crc16.o
 rax-oom-test: rax-oom-test.o rax.o
 	$(CC) -o $@ $^ $(LDFLAGS) $(DEBUG)
 
+rax-samples: rax-samples.o rax.o rc4rand.o
+	$(CC) -o $@ $^ $(LDFLAGS) $(DEBUG)
 
 %.o: $(PROJECT_ROOT)%.c
-	$(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) $(DEBUG) -o $@ $<
 
 clean:
 	rm -f rax-test rax-oom-test *.gcda *.gcov *.gcno *.o
