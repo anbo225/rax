@@ -1,0 +1,13 @@
+rax-test
+rax-oom-test
+*.o
+*.dSYM
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+### Eclipse Patch ###
+# Eclipse Core
+.project
+
+build/
